@@ -1,14 +1,17 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// Import Firebase modules from CDN (for static hosting)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { 
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { 
+  getDatabase, ref, push, onChildAdded 
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBNG87htpHqMe3HRM-F9ftl5z01HHiwMJQ",
   authDomain: "messages-acce7.firebaseapp.com",
+  databaseURL: "https://messages-acce7-default-rtdb.firebaseio.com", // ⚠️ Add this line manually
   projectId: "messages-acce7",
   storageBucket: "messages-acce7.firebasestorage.app",
   messagingSenderId: "471730472939",
@@ -18,20 +21,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } 
-  from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getDatabase, ref, push, onChildAdded } 
-  from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-const firebaseConfig = {
-  // paste your config here
-};
-const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
+// DOM elements
 const loginSection = document.getElementById("login-section");
 const chatSection = document.getElementById("chat-section");
 const emailInput = document.getElementById("email");
@@ -39,16 +32,19 @@ const passwordInput = document.getElementById("password");
 const messagesDiv = document.getElementById("messages");
 const messageInput = document.getElementById("messageInput");
 
+// Sign up
 document.getElementById("signupBtn").onclick = () => {
   createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
     .catch(err => alert(err.message));
 };
 
+// Login
 document.getElementById("loginBtn").onclick = () => {
   signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
     .catch(err => alert(err.message));
 };
 
+// When logged in
 onAuthStateChanged(auth, user => {
   if (user) {
     loginSection.style.display = "none";
