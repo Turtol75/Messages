@@ -11,7 +11,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBNG87htpHqMe3HRM-F9ftl5z01HHiwMJQ",
   authDomain: "messages-acce7.firebaseapp.com",
-  databaseURL: "https://messages-acce7-default-rtdb.firebaseio.com", // ⚠️ Add this line manually
+  databaseURL: "https://messages-acce7-default-rtdb.firebaseio.com", // ⚠️ Add this manually
   projectId: "messages-acce7",
   storageBucket: "messages-acce7.firebasestorage.app",
   messagingSenderId: "471730472939",
