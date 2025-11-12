@@ -1,14 +1,12 @@
-// Import Firebase SDKs directly from the web (works with GitHub Pages)
+// Import Firebase modules from CDN (browser-compatible)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { 
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { 
-  getDatabase, ref, push, onChildAdded 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } 
+  from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getDatabase, ref, push, onChildAdded } 
+  from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-// Your web app's Firebase configuration
+// Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBNG87htpHqMe3HRM-F9ftl5z01HHiwMJQ",
   authDomain: "messages-acce7.firebaseapp.com",
