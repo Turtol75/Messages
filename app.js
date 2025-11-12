@@ -59,12 +59,16 @@ onAuthStateChanged(auth, user => {
 
     const msgRef = ref(db, "messages");
 
-    // 🔹 Display messages
+    // 🔹 Display messages with bubbles
     onChildAdded(msgRef, data => {
       const msg = data.val();
-      const msgElement = document.createElement("p");
-      msgElement.innerHTML = `<b>${msg.user}</b>: ${msg.text}`;
+      const msgElement = document.createElement("div");
+      msgElement.textContent = msg.text;
+
+      msgElement.classList.add("message-bubble");
+      msgElement.classList.add(msg.user === user.email ? "message-own" : "message-other");
       msgElement.id = data.key;
+
       messagesDiv.appendChild(msgElement);
       messagesDiv.scrollTop = messagesDiv.scrollHeight; // auto-scroll
     });
@@ -93,7 +97,6 @@ onAuthStateChanged(auth, user => {
     };
 
   } else {
-    // Not logged in
     loginSection.style.display = "block";
     chatSection.style.display = "none";
   }
